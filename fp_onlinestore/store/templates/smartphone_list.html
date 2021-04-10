@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+
+<h3>Smartphone list</h3>
+
+<p>Total smartphones = {{ smartphones | length }}</p>
+
+
+
+    <table class="table">
+
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Category</th>
+        </tr>
+
+
+            {% for p in smartphones %}
+
+             <tr>
+                 <td>{{p.title | default_if_none:"----"}}</td>
+                 <td>{{p.price | default_if_none:"----"}}</td>
+                 <td>{{p.quantity}}</td>
+                 <td>{{p.category.name | default:"----"}}</td>
+            </tr>
+
+            {% endfor %}
+
+    </table>
+
+{% endblock %}
