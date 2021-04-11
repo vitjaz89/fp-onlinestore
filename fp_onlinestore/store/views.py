@@ -50,10 +50,10 @@ class SmartphoneListView(ListView):
 
 class NotebookCreateView(PermissionRequiredMixin, CreateView):
     permission_required = ['store.add_notebook']
-    template_name = 'notebook_create.html'
+    template_name = 'notebooks_create.html'
     model = Notebook
     fields = '__all__'
-    success_url = reverse_lazy('notebooks_list')
+    success_url = reverse_lazy('notebook_list')
 
 class SmartphoneCreateView(PermissionRequiredMixin, CreateView):
     permission_required = ['store.add_smartphone']
@@ -61,6 +61,23 @@ class SmartphoneCreateView(PermissionRequiredMixin, CreateView):
     model = Smartphone
     fields = '__all__'
     success_url = reverse_lazy('smartphones_list')
+
+class NotebookUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = ['store.change_notebook']
+    template_name = 'notebook_update.html'
+    model = Notebook
+    context_object_name = 'notebook'
+    fields = '__all__'
+    success_url = reverse_lazy('notebook_list')
+
+class SmartphoneUpdateView(PermissionRequiredMixin, UpdateView):
+    permission_required = ['store.change_smartphone']
+    template_name = 'smartphone_update.html'
+    model = Smartphone
+    context_object_name = 'smartphone'
+    fields = '__all__'
+    success_url = reverse_lazy('smartphone_list')
+
 
 class NotebookDeleteView(PermissionRequiredMixin, DeleteView):
     permission_required = ['store.delete_notebook']
