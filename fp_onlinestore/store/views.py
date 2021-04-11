@@ -8,23 +8,13 @@ def test_view(request):
     return render(request, 'base.html', {})
 
 
-class ProductDetailView(DetailView):
-    CT_MODEL_MODEL_CLASS = {
-        'notebook': Notebook,
-        'smartphone': Smartphone
-    }
-
-    def dispatch(self, request, *args, **kwargs):
-        self.model = self.CT_MODEL_MODEL_CLASS[kwargs['ct_model']]
-        self.queryset = self.model._base_manager.all()
-        return super().dispatch(request, *args, **kwargs)
+class NotebookDetailView(DetailView):
+    template_name = 'notebook_detail.html'
+    model = Notebook
+    context_object_name = 'notebook'
 
 
-    #model = Model
-    #queryset = Model.objects.all()
-    context_object_name = 'product'
-    template_name = 'product_detail.html'
-    slug_url_kwarg = 'slug'
+
 
 class NotebookListView(ListView):
     template_name = 'notebook_list.html'
