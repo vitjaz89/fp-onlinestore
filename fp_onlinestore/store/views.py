@@ -13,6 +13,10 @@ class NotebookDetailView(DetailView):
     model = Notebook
     context_object_name = 'notebook'
 
+class SmartphoneDetailView(DetailView):
+    template_name = 'smartphone_detail.html'
+    model = Smartphone
+    context_object_name = 'smartphone'
 
 
 
