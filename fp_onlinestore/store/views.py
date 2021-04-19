@@ -3,7 +3,7 @@ from django.http import HttpResponse
 import random
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView, ListView
-from .models import Notebook, Smartphone
+from .models import Notebook, Smartphone, Product
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
@@ -12,6 +12,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 
 def test_view(request):
     return render(request, 'base.html', {})
+
+
+
+class ProductsListView(ListView):
+    template_name = 'products_list.html'
+    model = Product
+    context_object_name = 'products'
 
 
 class NotebookDetailView(DetailView):
